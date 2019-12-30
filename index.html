@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>myFitnessAPP-myPrototype-main</title>
+    <title>myFitness-myPrototype-main</title>
     <style>
         #inputSearch {
             width: 75%;
@@ -151,19 +151,38 @@ function Ajax() {
         }).then(function (response) {
             console.log(response);
             console.log(response.results);
-         
+            
+            /*
             console.log(response.results[0]["category"]["id"]);
             console.log(response.results[0]["category"]["name"]);
             console.log(response.results[1]["category"]["id"]);
             console.log(response.results[1]["category"]["name"]);
+            */
+
             console.log(response.next); // displays https://wger.de/api/v2/exerciseinfo/?format=json&page=2            
             for (var i=0;; i++) {
+                /*
+                console.log(response.results[i]["description"]);
+                console.log(response.results[i]["name"]);
                 console.log(response.results[i]["category"]["name"].toLowerCase());
+                */
                 var searchedNames = response.results[i]["category"]["name"].toLowerCase();
                 var inputItem = $("#inputSearch").val().trim().toLowerCase();
                 if (searchedNames === inputItem) { 
-                   alert("yes");
-                }
+                alert("yes!");
+                var matchResponse = response.results[i];
+                console.log(matchResponse);
+                    var newDiv = $("<div>");
+                    var head = $("<h4>");
+                    head.text(matchResponse["name"]);
+                    var newP = $("<p>");
+                    var hr = $("<hr>");
+                    newP.text(matchResponse["description"]);
+                    newDiv.append(head);
+                    newDiv.append(newP);
+                    newDiv.append(hr);
+                    $(".resultsDisplayDiv").append(newDiv);
+                }  
             }            
 });
 }
