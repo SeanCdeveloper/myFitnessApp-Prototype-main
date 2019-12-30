@@ -154,6 +154,34 @@ muscles: [], muscles_secondary: [], equipment: []};
 
 
 /*
+
+var response = [
+    {0: {name: "Ab-Workout", 
+    category: {id: "10", name: "Abs"}, 
+    description: "<p>Ab workout<p>", 
+    muscles: [], 
+    secondary_muscles: []},
+    equipment: [],
+}, {1: {name: "Arm-Workout", 
+    category: {id: "8", name: "Arms"}, 
+    description: "<p>Arm workout<p>", 
+    muscles: [], 
+    secondary_muscles: []},
+    equipment: []},
+];
+
+console.log(response[0][0]["category"]["name"]);
+
+console.log(response[0]["0"].category.id);
+console.log(response[0]["0"].category.name);
+console.log(response[1]["1"].category.id);
+console.log(response[1]["1"].category.name);
+
+
+*/
+
+
+/*
         function clearField() {
         $("#results").empty();
         }
@@ -223,5 +251,4 @@ muscles: [], muscles_secondary: [], equipment: []};
 
     </script>
 </body>
-
 </html>
