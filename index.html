@@ -149,7 +149,8 @@ muscles: [], muscles_secondary: [], equipment: []};
         }).then(function (response) {
             console.log(response)
             console.log(response.results)
-            console.log(response.results[0].category.name); 
+            console.log(response.results[0]["category"]["id"]);
+            console.log(response.results[0]["category"]["name"]);
         });
 
 
