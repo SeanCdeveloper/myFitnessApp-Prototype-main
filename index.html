@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>myFitnessApp-myPrototype-Main</title>
+    <title>myFitnessApp-Prototype-Main</title>
     <style>
         #inputSearch {
             width: 75%;
@@ -146,12 +146,13 @@
          to parse for individual exercises */
 
         function Ajax() {
-            var queryURL = "https://wger.de/api/v2/exerciseinfo?format=json;"
+            for (var j = 0; j<10; j++) {
+            var queryURL = "https://wger.de/api/v2/exerciseinfo?format=json&page=" + j;
             var result;
             $.ajax({
                 url: queryURL,
                 method: "GET"
-            }).then(function (response) {
+            }).then(function(response) {
                 console.log(response);
                 console.log(response.results);
 
@@ -163,16 +164,11 @@
                 */
 
                 console.log(response.next); // displays https://wger.de/api/v2/exerciseinfo/?format=json&page=2            
-                for (var i = 0; ; i++) {
-                    /*
-                    console.log(response.results[i]["description"]);
-                    console.log(response.results[i]["name"]);
-                    console.log(response.results[i]["category"]["name"].toLowerCase());
-                    */
+                for (var i=0; ; i++) {
                     var searchedNames = response.results[i]["category"]["name"].toLowerCase();
                     var inputItem = $("#inputSearch").val().trim().toLowerCase();
                     if (searchedNames === inputItem) {
-                        alert("yes!");
+                        //alert("yes!");
                         var matchResponse = response.results[i];
                         console.log(matchResponse);
                         var newDiv = $("<div>");
@@ -187,9 +183,29 @@
                         $(".resultsDisplayDiv").prepend(newDiv);
                     }
                 }
-            });
+                });
+            
+            }
         }
 
+
+
+/* for (var i = 1; i < 10; i++) {
+        var queryURL = "https://wger.de/api/v2/exerciseinfo?format=json&page=" + i;
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function(response) {
+            console.log(response.results);
+            // console.log(response.results[0].category.name);
+            // console.log(this.url);
+        });
+    }*/
+    /*
+                    console.log(response.results[i]["description"]);
+                    console.log(response.results[i]["name"]);
+                    console.log(response.results[i]["category"]["name"].toLowerCase());
+                    */
         /*
                         var result = response.response.docs;
                     for (var i = 0; i < numberOfRecords; i++) {
@@ -208,10 +224,6 @@
                         console.log(response.results[i]["category"]);
                     }
                 */
-
-
-
-
 
         /*
            console.log(response.results[0]["category"]["name"]);
@@ -256,10 +268,6 @@
         console.log(response[1]["1"].category.id);
         console.log(response[1]["1"].category.name);
         */
-
-
-
-
 
         /*
                 function clearField() {
@@ -314,8 +322,6 @@
             // ...
         }
         */
-
     </script>
 </body>
-
 </html>
